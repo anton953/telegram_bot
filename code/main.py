@@ -23,7 +23,7 @@ class Form(StatesGroup):
 
 # Инициализация базы данных
 def init_db():
-    conn = sqlite3.connect('data_telebot_2.sql')
+    conn = sqlite3.connect('code/data_telebot_2.sql')
     cur = conn.cursor()
     cur.execute("CREATE TABLE IF NOT EXISTS users (id VARCHAR(50), city VARCHAR(50), username VARCHAR(50))")
     conn.commit()
@@ -88,7 +88,7 @@ async def retry_city(callback: types.CallbackQuery, state: FSMContext):
 # Показать пользователей
 @dp.message(Command('display_users'))
 async def display_users(message: types.Message):
-    conn = sqlite3.connect('data_telebot_2.sql')
+    conn = sqlite3.connect('code/data_telebot_2.sql')
 
     cur = conn.cursor()
     cur.execute('SELECT * FROM users')
@@ -181,7 +181,7 @@ async def get_weather(city: str, days: int) -> str:
 
 # Работа с БД
 def add_user(user_id: int, city: str, username: str):
-    conn = sqlite3.connect('data_telebot_2.sql')
+    conn = sqlite3.connect('code/data_telebot_2.sql')
     cur = conn.cursor()
     cur.execute('DELETE FROM users WHERE id = ?', (user_id,))
     cur.execute('INSERT INTO users VALUES (?, ?, ?)', (user_id, city, username))
@@ -189,7 +189,7 @@ def add_user(user_id: int, city: str, username: str):
     conn.close()
 
 def get_city(user_id: int) -> str | None:
-    conn = sqlite3.connect('data_telebot_2.sql')
+    conn = sqlite3.connect('code/data_telebot_2.sql')
     cur = conn.cursor()
     cur.execute('SELECT city FROM users WHERE id = ?', (user_id,))
     result = cur.fetchone()
