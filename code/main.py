@@ -11,7 +11,7 @@ import aiohttp
 import json
 
 # Конфигурация
-API_TOKEN = '6899828449:AAEGKYoJYx714U5KXm6I_4XTnRWS7m6O_E0'
+API_TOKEN = 'API'
 WEATHER_API = 'bd5e378503939ddaee76f12ad7a97608'
 
 bot = Bot(token=API_TOKEN)
